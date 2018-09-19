@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ ! -d /storage/AppData/Transmission ]; then
+	mkdir /storage/AppData/Transmission
+fi
+
+docker create --name=transmission \
+	--restart=always \
+	--net=backend \
+	-v /storage/AppData/Transmission:/config \
+	-v /storage/Download:/downloads \
+	-e PGID=0 -e PUID=0 \
+	-e TZ=America/Sao_Paulo \
+	-p 9091:9091
+	-p 51413:51413 \
+	-p 51413:51413/udp \
+	lsioarmhf/transmission
+
+docker start transmission

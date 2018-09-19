@@ -1,0 +1,15 @@
+#!/bin/bash
+
+docker create \
+	--name=emby \
+	--restart=always \
+	--net=backend \
+	-v /storage/AppData/Emby:/config \
+	-v /storage/Media:/mnt/share1 \
+	-p 8996:8996 \
+	-p 8920:8920 \
+	-p 8096:8096 \
+	-e UID=0 -e GID=0 -e GIDLIST=0 \
+	emby/embyserver_arm32v7:latest
+
+docker start emby

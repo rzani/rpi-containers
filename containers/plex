@@ -1,0 +1,19 @@
+
+if [ ! -d /storage/AppData/Plex ]; then
+	mkdir /storage/AppData/Plex
+	mkdir /storage/AppData/Transcode
+fi
+
+docker create \
+    --name=plex \
+    --restart=always \
+    --net=host \
+    -e PUID=0 -e PGID=0 \
+    -v /storage/AppData/Plex:/config \
+    -v /storage/Media/TV:/tv \
+    -v /storage/Media/Movies:/movies \
+    -v /storage/Media/Sophia:/all/sophia \
+    -v /storage/AppData/Transcode:/transcode \
+    lsioarmhf/plex
+
+docker start plex

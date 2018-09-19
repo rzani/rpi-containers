@@ -1,0 +1,14 @@
+#!/bin/bash
+
+docker create \
+	--name sonarr \
+	--restart=always \
+	--net=backend \
+	-p 8989:8989 \
+	-e PUID=0 -e PGID=0 \
+	-v /storage/AppData/Sonarr:/config \
+	-v /storage/Media/TV:/tv \
+	-v /storage/Download:/downloads \
+	lsioarmhf/sonarr
+
+docker start sonarr

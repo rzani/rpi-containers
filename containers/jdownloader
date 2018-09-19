@@ -1,0 +1,12 @@
+#!/bin/bash
+
+docker create \
+	--name=jdownloader \
+	--restart=always \
+	--net=host \
+	-v /storage/Download:/root/Downloads \
+	-v /storage/AppData/JDownloader:/opt/JDownloader/cfg \
+	-e PID=0 -e UID=0 \
+	jaymoulin/jdownloader
+	
+docker start jdownloader

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+docker create  --name="monitor" \
+        --restart=always \
+	--net=backend \
+	--device=/dev/vchiq \
+	--device=/dev/vcsm \
+	--volume=/opt/vc:/opt/vc \
+	--volume=/sys:/dockerhost/sys:ro \
+	--volume=/etc:/dockerhost/etc:ro \
+	--volume=/proc:/dockerhost/proc:ro \
+	--volume=/usr/lib:/dockerhost/usr/lib:ro \
+	-v=/var/media/ZANI:/boot \
+	-p=8888:8888 \
+	michaelmiklis/rpi-monitor
+
+docker start monitor

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+docker create \
+	--name=radarr \
+	--restart=always \
+	--net=backend \
+    	-v /storage/AppData/Radarr:/config \
+	-v /storage/Download:/downloads \
+	-v /storage/Media/Movies:/movies \
+	-e PGID=0 -e PUID=0  \
+	-e TZ=America/Sao_Paulo \
+	-p 7878:7878 \
+	lsioarmhf/radarr
+
+docker start radarr

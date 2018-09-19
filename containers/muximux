@@ -1,0 +1,10 @@
+docker create \
+	--restart=always \
+	--name=muximux \
+	-v /storage/AppData/Muximux:/config \
+	-e PGID=1001 -e PUID=1001  \
+	-e TZ=America/Sao_Paulo \
+	-p 80:80 \
+	lsioarmhf/muximux
+
+docker start muximux

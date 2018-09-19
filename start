@@ -1,0 +1,10 @@
+#!/bin/bash
+
+docker network create -d bridge backend
+
+sh ./containers/monitor
+sh ./containers/emby
+sh ./containers/transmission
+sh ./containers/jackett
+sh ./containers/radarr
+sh ./containers/sonarr

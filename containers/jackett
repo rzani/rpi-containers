@@ -1,0 +1,13 @@
+#!/bin/bash
+
+docker create --name=jackett \
+	--restart=always \
+	--net=backend \
+	-v /storage/AppData/Jackett:/config \
+	-v /storage/Download:/downloads \
+	-e PGID=0 -e PUID=0 \
+	-e TZ=America/Sao_Paulo \
+	-p 9117:9117 \
+	lsioarmhf/jackett
+
+docker start jackett

@@ -1,0 +1,8 @@
+docker create \
+	--name=organizr \
+	-v /storage/AppData/Organizr:/config \
+	-e PGID=1001 -e PUID=1001  \
+	-p 80:80 \
+	lsioarmhf/organizr
+
+docker start organizr
